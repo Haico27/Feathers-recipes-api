@@ -1,3 +1,5 @@
+'use strict';
+
 const authentication = require('feathers-authentication');
 const jwt = require('feathers-authentication-jwt');
 const local = require('feathers-authentication-local');
