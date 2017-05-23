@@ -25,6 +25,8 @@ module.exports = function(hook) {
 
   const currentUser = hook.params.user
 
+  console.log("Currentuser in cleanup-hook: ", currentUser)
+
   // √ for methods: find and get
   if (hook.method === 'find') {
 

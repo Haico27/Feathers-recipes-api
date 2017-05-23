@@ -29,7 +29,9 @@ module.exports = function () {
     after: {
       create: [
         hook => {
-          hook.result.data = hook.params.user;
+          hook.result.data = hook.params.user
+
+          delete hook.params.user.password
         }
       ]
     }
