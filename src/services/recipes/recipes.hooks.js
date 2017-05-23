@@ -12,6 +12,8 @@ const assignAuthor = function(options) {
   }
 }
 
+const makeLikeable = require('./hooks/make-likeable')
+
 //after hook: look up the user with the matching authorId in the users service
 //and add is as 'author'
 const populateAuthor = common.populate('author', { service: 'users', field: 'authorId' })
@@ -25,8 +27,14 @@ module.exports = {
       authenticate('jwt'),
       assignAuthor()
     ],
-    update: [ authenticate('jwt') ],
-    patch: [ authenticate('jwt') ],
+    update: [
+      authenticate('jwt'),
+      makeLikeable()
+    ],
+    patch: [
+      authenticate('jwt'),
+      makeLikeable()
+      ],
     remove: [ authenticate('jwt') ]
   },
 
