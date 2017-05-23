@@ -11,7 +11,7 @@ module.exports = function(options) {
         let data = {};
         data[action] = { likedBy: hook.params.user._id };
         hook.data = data;
-        console.log(hook.data)
+        console.log(hook);
       }
     })
   }

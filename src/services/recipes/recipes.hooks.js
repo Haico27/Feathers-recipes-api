@@ -3,6 +3,8 @@
 const { authenticate } = require('feathers-authentication').hooks;
 const common = require('feathers-hooks-common');
 
+const populateLikes = common.populate('likes', { service: 'users', field: 'likedBy' })
+
 //before hook: assign authorId to the _id of the currently logged in user.
 const assignAuthor = function(options) {
   return function(hook) {
@@ -29,18 +31,19 @@ module.exports = {
     ],
     update: [
       authenticate('jwt'),
-      makeLikeable()
+      makeLikeable(),
     ],
     patch: [
       authenticate('jwt'),
-      makeLikeable()
+      makeLikeable(),
       ],
     remove: [ authenticate('jwt') ]
   },
 
   after: {
     all: [
-      populateAuthor
+      populateAuthor,
+      populateLikes
     ],
     find: [],
     get: [],
